@@ -1,0 +1,33 @@
+.form-structor {
+  width: 600px;
+  position: relative;
+  margin: 3em auto;
+}
+
+.mat-card{
+  padding: 5% 0%;
+  border-radius: 10px;
+}
+
+.mat-card-actions{
+  text-align: center;
+}
+
+.mat-card-content{
+  text-align: center;
+}
+
+.mat-form-field{
+  width: 65%;
+  margin: 10px 0 !important;
+}
+
+.login-header{
+  color: #673ab7;
+  text-align: center;
+}
+
+.below-link-text{
+  text-align: center;
+  font-size: 15px;
+}

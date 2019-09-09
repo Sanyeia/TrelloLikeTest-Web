@@ -1,0 +1,37 @@
+<div class="form-structor">
+
+    <mat-card class="mat-card">
+        <mat-card-title class="login-header">
+            <mat-icon svgIcon="full_logo" [inline]="true"></mat-icon>
+        </mat-card-title>
+
+        <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="login()">
+
+            <mat-card-content class="mat-card-content">
+
+                <mat-form-field class="mat-form-field">
+                    <input matInput placeholder="Enter your username" formControlName="username" name="username">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput placeholder="Enter your password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="password" name="password" >
+                  <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </a>
+                </mat-form-field>
+
+            </mat-card-content>
+
+            <mat-card-actions class="mat-card-actions">
+                <button mat-raised-button="" color=primary>LOGIN</button>
+            </mat-card-actions>
+
+        </form>
+
+        <div class="below-link-text">Don't have an account? <a [routerLink]="['/register']">Create one</a></div>
+
+    </mat-card>
+
+</div>
