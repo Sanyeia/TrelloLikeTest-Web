@@ -6,3 +6,13 @@ export interface User {
   password: string;
   gender?: string;
 }
+
+export interface Task {
+  title: string;
+  description?: string;
+  status?: number;
+}
+
+export interface List {
+  title: string;
+}

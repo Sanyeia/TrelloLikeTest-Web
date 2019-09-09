@@ -10,6 +10,10 @@ import {
   MatInputModule,
   MatSelectModule,
   MatListModule,
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatAutocompleteModule,
 } from '@angular/material';
 
 @NgModule({
@@ -23,7 +27,9 @@ import {
     MatCardModule,
     MatInputModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   exports: [
     MatToolbarModule,
@@ -33,7 +39,13 @@ import {
     MatCardModule,
     MatInputModule,
     MatSelectModule,
-    MatListModule
-  ]
+    MatListModule,
+    MatAutocompleteModule,
+    MatDialogModule
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
 })
 export class MaterialModule { }

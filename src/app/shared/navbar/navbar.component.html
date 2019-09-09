@@ -5,19 +5,25 @@
             <span>TrelloLike</span>
         </a>
 
-        <div>
-            <a href="#" mat-button>
-                <i class="material-icons">format_list_bulleted</i> Lists
-            </a>
-            <a href="#" mat-button>
-                <i class="material-icons">person</i> Profile
-            </a>
-        </div>
-
         <span class="spacer"></span>
 
+        <form [hidden]="!tgglSearch">
+            <mat-form-field>
+                <input name="search" type="text" matInput [formControl]="search" [matAutocomplete]="auto" (keyup)="updateSelect($event.target.value)">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of options" (click)="openDialog(null, option._id)">
+                        {{option.title}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+
+        <button mat-icon-button matSuffix (click)="tgglSearch = !tgglSearch" [attr.aria-label]="'Toggle search bar'" [attr.aria-pressed]="tgglSearch">
+          <mat-icon>search</mat-icon>
+        </button>
+
         <div>
-            <a href="#" mat-button>
+            <a mat-button (click)="logout()">
                 <i class="material-icons">exit_to_app</i> Logout
             </a>
         </div>

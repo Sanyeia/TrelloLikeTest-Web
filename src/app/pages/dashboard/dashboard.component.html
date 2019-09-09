@@ -1,19 +1,52 @@
 <section class="lists-group">
-
     <div class="list-layout" *ngFor='let list of lists'>
         <div class="list-header">
-            <h2>{{list.title}}</h2>
+            <div style="float: left;">
+                <span>{{list.title | titlecase}}</span>
+            </div>
+
+            <a mat-icon-button (click)="deleteList()" [attr.aria-label]="'Delete list'" [attr.aria-pressed]="delete">
+                <mat-icon matListIcon>delete</mat-icon>
+            </a>
         </div>
 
-        <div class="list-items">
-
-            <li>tarea 1</li>
-            <li>tarea 2</li>
-            <li>tarea 3</li>
+        <span *ngIf="list.tasks.length == 0" class="backgroung-info">The list is empty :C </span>
+        <div class="list-items" *ngFor='let task of list.tasks'>
+            <li (click)="openDialog(null, task._id)">
+              {{task.title | titlecase}} ({{ getStatus(task.status) }})
+              <a mat-icon-button (click)="$event.preventDefault(); $event.stopPropagation(); assign(task._id)"
+              [attr.aria-label]="'Delete list'"
+              [attr.aria-pressed]="assign" class="task-actions">
+                  <mat-icon matListIcon>person</mat-icon>
+              </a>
+            </li>
         </div>
 
         <div class="list-footer">
-            <button class="add-task-btn">Add a card</button>
+            <button class="add-task-btn" (click)="openDialog(list._id, null)">Add a Task</button>
         </div>
     </div>
+
+
+        <div class="list-layout">
+            <div class="list-header" (click)="nlToggle = !nlToggle">
+                <div>
+                    <span>New List</span>
+                </div>
+            </div>
+
+            <span class="backgroung-info">Create a new List</span>
+
+            <div class="list-footer">
+                <div class="list-footer">
+                    <button class="add-task-btn"
+                    [swal]="{ title: 'Enter list title', input: 'text' }"
+                    (confirm)="createList($event)">
+                      Create
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
 </section>

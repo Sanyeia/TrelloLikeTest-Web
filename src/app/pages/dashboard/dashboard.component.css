@@ -1,11 +1,10 @@
 .lists-group {
   display: flex;
-  min-width: 100%;
-  height: 88vh;
+  min-height: 90vh;
   overflow-x: auto;
-  margin: 0 25px 25px 0;
   vertical-align: top;
-  background-color: #805dbf;
+  background-color: #e1dcea;
+  padding: 5px 10px;
 }
 
 .list-layout {
@@ -25,16 +24,29 @@
 }
 
 .list-header{
-  display: inline-block;
-  margin-left: 0.6rem;
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
 
+.list-header a{
+  float: right;
+  margin-right: 0.5em;
+}
+
+.list-header span{
+  margin-left: 0.6rem;
+}
 
 .list-items {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-content: start;
+  align-content: flex-start;
   padding: 0 0.5rem 0.5rem;
   overflow-y: auto;
 }
@@ -71,8 +83,20 @@
   background-color: #f3f3f3;
   border: none;
   border-radius: 0 0 0.3rem 0.3rem;
+  outline: none;
 }
 
 .add-task-btn:hover {
   background: #d5c6f1;
+}
+
+.backgroung-info{
+  text-align: center;
+  color: #635f6973;
+  font-family: sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+.task-actions{
+  float: right;
 }

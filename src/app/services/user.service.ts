@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API_URL } from '../core/constants';
 import { BaseService } from './base.service';
-import { User } from '../interfaces/user';
+import { User } from '../interfaces/interfaces';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { throwError } from 'rxjs';
 })
 export class UserService extends BaseService {
 
-  url = {
+  private url = {
     search_users: `${ API_URL }/user?search=:search`,
     login: `${ API_URL }/login`,
     create_user: `${ API_URL }/register`,
@@ -23,6 +23,10 @@ export class UserService extends BaseService {
     public http:HttpClient,
     public _nS: NotificationsService
   ) { super(http); }
+
+  public logout = () => {
+    return this.clear_storage();
+  }
 
   //user routes
   public search = (search:string) => {

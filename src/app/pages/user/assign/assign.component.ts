@@ -5,14 +5,15 @@ import { TaskService } from '../../services/task.service';
 import { Task } from '../../interfaces/interfaces';
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  selector: 'app-assign',
+  templateUrl: './assign.component.html',
+  styles: []
 })
-export class TasksComponent implements OnInit {
+export class AssignComponent implements OnInit {
 
   taskForm: FormGroup;
   task: any;
+  users: any;
 
   public taskAttributes:any = {
     title: new FormControl('', Validators.required),
@@ -21,28 +22,24 @@ export class TasksComponent implements OnInit {
   };
 
   constructor(
-    public taskModal: MatDialogRef<TasksComponent>,
+    public assignModal: MatDialogRef<AssignComponent>,
     public _tS: TaskService,
     @Inject(MAT_DIALOG_DATA) public data:any
   ) { }
 
   ngOnInit() {
     this.taskForm = new FormGroup(this.taskAttributes);
-    if(this.data.task){
-      this.setFields();
-    }
+    this.loadUsers();
   }
 
   onCancel(): void {
-    this.taskModal.close();
+    this.assignModal.close();
   }
 
-  setFields(): void {
-    this._tS.getTask(this.data.task).subscribe( (resp:any) => {
+  loadUsers(): void {
+    this._tS.getTask(this.data.task_id).subscribe( (resp:any) => {
       this.task = resp.data;
-      this.taskForm.get('title').setValue(this.task.title);
-      this.taskForm.get('description').setValue(this.task.description);
-      this.taskForm.get('status').setValue(this.task.status);
+      this.users = this.task.users;
     });
   }
 
@@ -53,7 +50,7 @@ export class TasksComponent implements OnInit {
       status: this.taskForm.get('status').value,
     };
     this._tS.create(this.data.list, task).subscribe( resp => {
-      this.taskModal.close();
+      this.assignModal.close();
     });
   }
 
@@ -64,7 +61,7 @@ export class TasksComponent implements OnInit {
       status: this.taskForm.get('status').value,
     };
     this._tS.update(this.data.task, task).subscribe( resp => {
-      this.taskModal.close();
+      this.assignModal.close();
     });
   }
 }

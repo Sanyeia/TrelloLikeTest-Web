@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 //Routes
 import { APP_ROUTES } from './app.routes';
@@ -18,6 +18,8 @@ import { PagesComponent } from './pages/pages.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { UserComponent } from './pages/user/user.component';
+import { AssignComponent } from './pages/user/assign/assign.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     RegisterComponent,
     DashboardComponent,
     TasksComponent,
+    UserComponent,
+    AssignComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,8 +42,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HttpClientModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
+    FormsModule,
     APP_ROUTES
   ],
+  exports: [ TasksComponent, AssignComponent ],
+  entryComponents: [ TasksComponent, AssignComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

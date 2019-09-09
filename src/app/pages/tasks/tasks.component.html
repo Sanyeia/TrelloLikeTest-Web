@@ -1,3 +1,38 @@
-<p>
-  tasks works!
-</p>
+<form [formGroup]="taskForm" autocomplete="off" novalidate>
+
+    <h1 mat-dialog-title>New Task</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="mat-form-field">
+            <input matInput placeholder="Title" formControlName="title" name="title">
+        </mat-form-field>
+
+        <mat-form-field class="mat-form-field">
+            <textarea matInput name="description" id="" cols="30" rows="10"
+            placeholder="Descrption" formControlName="description"
+            ></textarea>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-select placeholder="Status" formControlName="status">
+                  <mat-option value="1">Open</mat-option>
+                  <mat-option value="2">In-Progress</mat-option>
+                  <mat-option value="3">Completed</mat-option>
+                  <mat-option value="4">Archived</mat-option>
+              </mat-select>
+          </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button="" color=primary
+      (click)="onCreate()" *ngIf="!task">
+      Create Task</button>
+
+      <button mat-raised-button="" color=primary
+      (click)="onUpdate()" *ngIf="task">
+      Update Task</button>
+
+      <button mat-button (click)="onCancel()">Cancel</button>
+    </div>
+
+</form>
+
+
