@@ -16,6 +16,7 @@ export class TaskService extends BaseService{
     search: `${ API_URL }/task/search?q=:search`,
     delete_update: `${ API_URL }/task/:id`,
     assign: `${ API_URL }/task/:id/assign`,
+    usersSearch: `${ API_URL }/task/:id/users?search=:search`,
   }
 
   constructor(
@@ -47,6 +48,12 @@ export class TaskService extends BaseService{
   //task routes
   public search = (search) => {
     return this.get(this.url.search.replace(':search', search));
+  }
+
+  public usersSearch = (id, search) => {
+    let searchUrl = this.url.usersSearch.replace(':search', search);
+    searchUrl = searchUrl.replace(':id', id);
+    return this.get(searchUrl);
   }
 
   public getTask = (id) => {
@@ -81,11 +88,12 @@ export class TaskService extends BaseService{
     }));
   }
 
-  public assign = (id, user_id) => {
+  public assign = (id, user_id, action) => {
     let formData = new HttpParams();
     formData = formData.set('user_id', user_id);
+    formData = formData.set('action', action);
 
-    return this.put(this.url.assign.replace(':id', id), formData)
+    return this.patch(this.url.assign.replace(':id', id), formData)
     .pipe(catchError(err => {
       this._nS.show('Something went wrong', 'Please try again later', 'error');
       return throwError(err);

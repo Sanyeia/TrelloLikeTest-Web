@@ -38,7 +38,6 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       this.getLists();
     });
   }
@@ -52,19 +51,21 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  deleteList(list_id:string): void {
+    this._lS.remove(list_id).subscribe( resp => {
+      this.getLists();
+    });
+  }
+
   getStatus(status:string) {
     return this._tS.getStatus(status);
   }
 
   assign(task_id:any) {
     let dialogRef = this.dialog.open(AssignComponent, {
-      width: '350px',
+      width: '450px',
+      height: '450px',
       data: { task_id }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.getLists();
     });
   }
 

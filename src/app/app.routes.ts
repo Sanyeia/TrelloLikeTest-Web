@@ -6,6 +6,7 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
 import { PagesComponent } from './pages/pages.component';
 import { RegisterComponent } from './login/register/register.component';
 import { LoginGuard } from './services/guards/login.guard';
+import { UserComponent } from './pages/user/user.component';
 
 
 const appRoutes: Routes = [
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     canActivate: [ LoginGuard ],
     children: [
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'users', component: UserComponent },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ]
   },

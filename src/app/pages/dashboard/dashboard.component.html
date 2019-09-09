@@ -5,7 +5,7 @@
                 <span>{{list.title | titlecase}}</span>
             </div>
 
-            <a mat-icon-button (click)="deleteList()" [attr.aria-label]="'Delete list'" [attr.aria-pressed]="delete">
+            <a mat-icon-button (click)="deleteList(list._id)" [attr.aria-label]="'Delete list'" [attr.aria-pressed]="delete">
                 <mat-icon matListIcon>delete</mat-icon>
             </a>
         </div>
@@ -35,14 +35,12 @@
                 </div>
             </div>
 
-            <span class="backgroung-info">Create a new List</span>
-
             <div class="list-footer">
                 <div class="list-footer">
                     <button class="add-task-btn"
-                    [swal]="{ title: 'Enter list title', input: 'text' }"
+                    [swal]="{ title: 'Enter list title', input: 'text', confirmButtonColor: '#673ab7' }"
                     (confirm)="createList($event)">
-                      Create
+                      Create New List
                     </button>
                 </div>
             </div>

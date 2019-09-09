@@ -14,6 +14,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
   MatAutocompleteModule,
+  MatTableModule,
 } from '@angular/material';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     MatSelectModule,
     MatListModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   exports: [
     MatToolbarModule,
@@ -41,7 +43,8 @@ import {
     MatSelectModule,
     MatListModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

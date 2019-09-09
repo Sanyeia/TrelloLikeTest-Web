@@ -84,6 +84,7 @@
   border: none;
   border-radius: 0 0 0.3rem 0.3rem;
   outline: none;
+  text-align: center;
 }
 
 .add-task-btn:hover {

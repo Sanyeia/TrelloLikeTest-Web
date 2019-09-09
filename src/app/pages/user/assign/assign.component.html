@@ -1,1 +1,33 @@
-<p>assign works!</p>
+<form [formGroup]="taskForm" autocomplete="off" novalidate>
+
+    <h1 mat-dialog-title>Assign Users</h1>
+
+    <div mat-dialog-content>
+        <mat-form-field style="width: 100%;">
+            <input name="search" type="text" matInput [matAutocomplete]="auto"
+            (keyup)="updateSelect($event.target.value)">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" (click)="onAssign(option._id, 1)">
+                    {{option.name.firstname+' '+option.name.lastname+' ('+option.username+')'}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-list>
+            <mat-list-item *ngFor="let user of users">
+              {{user.name.firstname+' '+user.name.lastname}}
+              <a mat-icon-button (click)="onAssign(user._id, 2)"
+              [attr.aria-label]="'Delete list'"
+              [attr.aria-pressed]="assign" class="task-actions">
+                  <mat-icon matListIcon>delete</mat-icon>
+              </a>
+            </mat-list-item>
+        </mat-list>
+
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button color="warn" (click)="onCancel()" style="width: 100%;">Cancel</button>
+    </div>
+
+</form>

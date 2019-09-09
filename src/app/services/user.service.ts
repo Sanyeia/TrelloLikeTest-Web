@@ -13,7 +13,7 @@ import { throwError } from 'rxjs';
 export class UserService extends BaseService {
 
   private url = {
-    search_users: `${ API_URL }/user?search=:search`,
+    index: `${ API_URL }/user`,
     login: `${ API_URL }/login`,
     create_user: `${ API_URL }/register`,
     update_user: `${ API_URL }/user/:id`,
@@ -30,7 +30,11 @@ export class UserService extends BaseService {
 
   //user routes
   public search = (search:string) => {
-    return this.get(this.url.search_users.replace(':search', search));
+    return this.get(this.url.index.replace(':search', search)+'?search='+search);
+  }
+
+  public index = () => {
+    return this.get(this.url.index);
   }
 
   public login = (body) => {
